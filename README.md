@@ -28,7 +28,6 @@ The dataset contains:
 * Duration
 * Total Stops
 * Departure Time
-* Arrival Time
 * Price
 
 ## Features
