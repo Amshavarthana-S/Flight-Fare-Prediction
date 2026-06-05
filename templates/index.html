@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flight Fare Prediction</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body{
+            background: #eef2f7;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            min-height:100vh;
+            padding:30px;
+        }
+
+        .container{
+            background:white;
+            width:550px;
+            padding:35px;
+            border-radius:15px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        h1{
+            text-align:center;
+            color:#1e3a8a;
+            margin-bottom:25px;
+            font-size:30px;
+        }
+
+        label{
+            font-size:16px;
+            font-weight:bold;
+            color:#333;
+            display:block;
+            margin-bottom:8px;
+        }
+
+        input,
+        select{
+            width:100%;
+            height:50px;
+            padding:12px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            font-size:16px;
+            margin-bottom:18px;
+        }
+
+        input:focus,
+        select:focus{
+            outline:none;
+            border:2px solid #2563eb;
+        }
+
+        button{
+            width:100%;
+            height:50px;
+            border:none;
+            border-radius:8px;
+            background:#2563eb;
+            color:white;
+            font-size:18px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        button:hover{
+            background:#1d4ed8;
+        }
+
+        .result{
+            margin-top:25px;
+            text-align:center;
+            font-size:22px;
+            font-weight:bold;
+            color:green;
+        }
+
+        .subtitle{
+            text-align:center;
+            margin-bottom:25px;
+            color:#555;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>✈ Flight Fare Prediction</h1>
+
+    <p class="subtitle">
+        Enter flight details to estimate fare
+    </p>
+
+    <form action="/predict" method="POST">
+
+        <label>Source</label>
+        <select name="source" required>
+            <option value="">Select Source</option>
+            <option value="banglore">Banglore</option>
+            <option value="chennai">Chennai</option>
+            <option value="delhi">Delhi</option>
+            <option value="kolkata">Kolkata</option>
+            <option value="mumbai">Mumbai</option>
+        </select>
+
+        <label>Destination</label>
+        <select name="destination" required>
+            <option value="">Select Destination</option>
+            <option value="0">Kolkata</option>
+            <option value="1">Hyderabad</option>
+            <option value="2">Delhi</option>
+            <option value="3">Banglore</option>
+            <option value="4">Cochin</option>
+        </select>
+
+        <label>Airline</label>
+        <select name="airlines" required>
+            <option value="">Select Airline</option>
+            <option value="0">Trujet</option>
+            <option value="1">SpiceJet</option>
+            <option value="2">Air Asia</option>
+            <option value="3">IndiGo</option>
+            <option value="4">GoAir</option>
+            <option value="5">Vistara</option>
+            <option value="6">Vistara Premium Economy</option>
+            <option value="7">Air India</option>
+            <option value="8">Multiple Carriers</option>
+            <option value="9">Multiple Carriers Premium Economy</option>
+            <option value="10">Jet Airways</option>
+            <option value="11">Jet Airways Business</option>
+        </select>
+
+        <label>Total Stops</label>
+        <select name="total_stops" required>
+            <option value="">Select Stops</option>
+            <option value="0">Non-stop</option>
+            <option value="1">1 Stop</option>
+            <option value="2">2 Stops</option>
+            <option value="3">3 Stops</option>
+            <option value="4">4 Stops</option>
+        </select>
+
+        <label>Journey Date</label>
+        <input type="date" name="journey_date" required>
+
+        <label>Departure Time</label>
+        <input type="time" name="departure_time" required>
+
+        <label>Duration</label>
+        <input
+            type="text"
+            name="duration"
+            placeholder="Example: 2h 30m"
+            required
+        >
+
+        <button type="submit">
+            Predict Flight Fare
+        </button>
+
+    </form>
+
+    {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
